@@ -29,6 +29,7 @@ public class SinhVienService {
 //    @Retry(name="basic")
 //    @Retry(name="exception")
     @RateLimiter(name="basic")
+//    @RateLimiter(name="timeoutExample")
     public ResponseTemplateVO getUserWithKhoa(Long sinhVienId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         SinhVien sinhVien = sinhVienRepository.findById(sinhVienId).get();
