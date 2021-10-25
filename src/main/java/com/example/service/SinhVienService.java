@@ -4,6 +4,8 @@ import com.example.VO.Khoa;
 import com.example.VO.ResponseTemplateVO;
 import com.example.entity.SinhVien;
 import com.example.repository.SinhVienRepository;
+
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,9 @@ public class SinhVienService {
     public SinhVien saveSinhVien(SinhVien sinhVien) {
         return sinhVienRepository.save(sinhVien);
     }
-    @Retry(name="basic")
+//    @Retry(name="basic")
+//    @Retry(name="exception")
+    @RateLimiter(name="basic")
     public ResponseTemplateVO getUserWithKhoa(Long sinhVienId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         SinhVien sinhVien = sinhVienRepository.findById(sinhVienId).get();
@@ -35,7 +39,7 @@ public class SinhVienService {
                         Khoa.class);
 
         vo.setKhoa(khoa);
-
+        System.out.println(sinhVien);
         return vo;
     }
     public ResponseEntity<String> orderFallback(Exception e){

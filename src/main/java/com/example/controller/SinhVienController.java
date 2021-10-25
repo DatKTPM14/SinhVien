@@ -17,6 +17,7 @@ import com.example.service.SinhVienService;
 public class SinhVienController {
 	 @Autowired
 	    private SinhVienService sinhVienService;
+	private int i;
 
 	    @PostMapping("/")
 	    public SinhVien saveSinhVien(@RequestBody SinhVien sinhVien){
@@ -29,6 +30,14 @@ public class SinhVienController {
 	                                                                Long sinhVienId){
 	        return sinhVienService.getUserWithKhoa(sinhVienId);
 	    }
+	    @GetMapping("/rate/{id}")
+		    public ResponseTemplateVO getahi(@PathVariable("id")
+			        Long sinhVienId){
+	    	for(i =0 ; i <10 ;i++) {
+	    		System.out.println(sinhVienService.getUserWithKhoa(sinhVienId));
+	    	}
+			return sinhVienService.getUserWithKhoa(sinhVienId);
+			}
 	    @GetMapping("/")
 	    public String helloWorld(){
 	        return "Hello Nguyễn Thế Đạt!";
