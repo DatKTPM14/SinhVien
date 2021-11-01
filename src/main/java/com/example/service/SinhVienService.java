@@ -26,9 +26,9 @@ public class SinhVienService {
     public SinhVien saveSinhVien(SinhVien sinhVien) {
         return sinhVienRepository.save(sinhVien);
     }
-//    @Retry(name="basic")
+    @Retry(name="basic")
 //    @Retry(name="exception")
-    @RateLimiter(name="basic")
+//    @RateLimiter(name="basic")
     public ResponseTemplateVO getUserWithKhoa(Long sinhVienId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         SinhVien sinhVien = sinhVienRepository.findById(sinhVienId).get();
